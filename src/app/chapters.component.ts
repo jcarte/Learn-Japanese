@@ -6,7 +6,7 @@ import {Chapter} from './chapter';
 @Component({
   selector: 'chapter-list',
   template: `    
-    <li *ngFor="let chapter of chapters">
+    <li *ngFor="let chapter of chapters"  [routerLink]="['/practise', chapter.chapterId]">
       {{chapter.description}} ({{chapter.chapterId}})
     </li>`,
   styles: ['']
@@ -14,7 +14,7 @@ import {Chapter} from './chapter';
 export class ChaptersComponent implements OnInit{
     chapters: Chapter[];
     ngOnInit(): void {
-        this.chapters = this.dataService.getChapters();
+        this.dataService.getChapters().then(chapters => this.chapters = chapters);
     }
     constructor(private dataService: DataService) { }
 }

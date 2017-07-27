@@ -5,16 +5,16 @@ import {Keyword} from './keyword';
 
 @Injectable()
 export class DataService{
-    getChapters(): Chapter[]{
-        return CHAPTERS;
+    getChapters(): Promise<Chapter[]>{
+        return Promise.resolve(CHAPTERS);
     }
 
-    getChapter(chapterId:number): Chapter{
-        return CHAPTERS.filter(chap=>chap.chapterId === chapterId)[0];
+    getChapter(chapterId:number): Promise<Chapter>{
+        return Promise.resolve(CHAPTERS.filter(chap=>chap.chapterId === chapterId)[0]);
     }
 
-    getKeywords(chapterId:number): Keyword[]{
-        return KEYWORDS.filter(key=>key.chapterId === chapterId);
+    getKeywords(chapterId:number): Promise<Keyword[]>{
+        return Promise.resolve(KEYWORDS.filter(key=>key.chapterId === chapterId));
     }
 
 }

@@ -7,7 +7,7 @@ import { AngularFireDatabase, FirebaseListObservable } from "angularfire2/databa
   selector: 'app-root',
   template: `
     <h1>{{title}}</h1>
-    <chapter-list></chapter-list>`,
+    <router-outlet></router-outlet>`,
   styles: ['']
 })
 export class AppComponent{
