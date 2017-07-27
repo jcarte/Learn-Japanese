@@ -5,16 +5,11 @@ import { AngularFireDatabase, FirebaseListObservable } from "angularfire2/databa
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  template: `
+    <h1>{{title}}</h1>
+    <chapter-list></chapter-list>`,
+  styles: ['']
 })
-export class AppComponent implements OnInit{
-  ngOnInit(): void {
-    this.items = this.db.list('/Chapters');
-  }
-  items: FirebaseListObservable<any[]>;
-  constructor(private db:AngularFireDatabase){
-    
-  }
+export class AppComponent{
   title = 'Learn Japanese';
 }
