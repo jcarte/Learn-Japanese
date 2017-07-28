@@ -5,9 +5,27 @@ import { Keyword } from './keyword';
 @Component({
     selector: 'flash-card-front',
     template: `
-    {{label}}: {{value}}
+    <div class="panel panel-default text-center" #main>
+        <div class="panel-body">
+            <div id="main" class="col-xs-12">
+                <h6>{{label}}</h6>
+                <h1>{{value}}</h1>
+            </div>
+        </div>
+    </div>
+    
+
     `,
-    styles: [``]
+    styles: [`
+        #main{
+            padding:0px;
+            margin: 0;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    `]
 })
 export class FlashCardFront implements OnInit {
     ngOnInit(): void {

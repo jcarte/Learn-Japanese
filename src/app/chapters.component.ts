@@ -3,12 +3,20 @@ import {DataService} from './data.service';
 import {Chapter} from './chapter';
 
 
+    // <li *ngFor="let chapter of chapters"  [routerLink]="['/practise', chapter.chapterId]">
+    //   {{chapter.description}} ({{chapter.chapterId}})
+    // </li>
+
 @Component({
   selector: 'chapter-list',
   template: `    
-    <li *ngFor="let chapter of chapters"  [routerLink]="['/practise', chapter.chapterId]">
-      {{chapter.description}} ({{chapter.chapterId}})
-    </li>`,
+
+<div class="list-group col-xs-6 col-xs-offset-3">
+  <a *ngFor="let chapter of chapters" [routerLink]="['/practise', chapter.chapterId]" class="list-group-item text-center">
+  {{chapter.description}}</a>
+</div>
+
+`,
   styles: ['']
 })
 export class ChaptersComponent implements OnInit{

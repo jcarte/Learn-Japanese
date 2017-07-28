@@ -3,13 +3,22 @@ import { AngularFireDatabase, FirebaseListObservable } from "angularfire2/databa
 
 // https://github.com/angular/angularfire2/tree/master/docs
 
+//https://bootswatch.com/superhero/
+
+
 @Component({
   selector: 'app-root',
   template: `
-    <h1>{{title}}</h1>
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" [routerLink]="['/']">{{title}}</a>
+        </div>
+      </div>
+    </nav>
     <router-outlet></router-outlet>`,
   styles: ['']
 })
 export class AppComponent{
-  title = 'Learn Japanese';
+  title = 'Genki Japanese';
 }

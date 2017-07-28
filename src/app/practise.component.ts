@@ -14,21 +14,43 @@ import 'rxjs/add/operator/switchMap';//??????
 @Component({
     selector: 'practise',
     template: ` 
-    <button (click)="previous()">Previous</button>
-    <div #cardholder></div>
-    <button (click)="next()">Next</button> 
-
-    <br>
-
-    <button (click)="goBack()">Menu</button> 
-
-    <button (click)="flipCard()">Turn Over</button> 
-
-    <div *ngIf="keywords">
-        {{cardIndex+1}} / {{keywords.length}}
+    <div>
+        <div class="col-xs-2 text-left" id="previous">
+            <i class="fa fa-chevron-left fa-3x" aria-hidden="true" (click)="previous()" ></i>
+        </div>
+        <div class="col-xs-8">
+            <div class="col-xs-12" #cardholder id="card"></div>
+        </div> 
+        <div class="col-xs-2 text-right" id="next">
+            <i class="fa fa-chevron-right fa-3x" aria-hidden="true" (click)="next()"></i>
+        </div>
+        <div #footer class="col-xs-offset-2 col-xs-8 text-left">
+            <div class="col-xs-4">
+                <a (click)="goBack()" class="btn btn-link">Menu</a> 
+            </div>
+            <div class="col-xs-4 text-center">
+                <a (click)="flipCard()" class="btn btn-info btn-xs">Turn Over</a> 
+            </div>
+            <div class="col-xs-4 text-right">
+                <div *ngIf="keywords">
+                    {{cardIndex+1}} / {{keywords.length}}
+                </div>
+            </div>
+        </div>
     </div>
+
+    
     `,
-    styles: ['']
+    styles: [`
+    #card {
+        min-height: 300px;
+        display: inline-block;
+        vertical-align: middle;
+    }
+    #next #previous{
+        
+    }
+    `]
 })
 
 // <li *ngFor="let keyword of keywords">
@@ -66,18 +88,24 @@ export class PractiseComponent implements OnInit {
     }
 
     next(): void {
+        if (this.cardIndex == this.keywords.length - 1)
+            return;
+        
         if (this.cardIndex == null)
             this.cardIndex = 0
-        else if (this.cardIndex < this.keywords.length - 1)
+        else
             this.cardIndex++;
 
         this.loadFront();//want to load same again?
     }
 
     previous(): void {
+        if (this.cardIndex == 0)
+            return;
+
         if (this.cardIndex == null)
             this.cardIndex = 0
-        else if (this.cardIndex > 0)
+        else
             this.cardIndex--;
 
         this.loadFront();//want to load same again?
