@@ -10,7 +10,8 @@ import { environment } from '../environments/environment';
 
 import { PractiseComponent } from './practise.component';
 import { ChaptersComponent } from './chapters.component';
-import { FlashCard } from './flash-card.component';
+import { FlashCardFront } from './flash-card-front.component';
+import { FlashCardBack } from './flash-card-back.component';
 
 import { DataService } from './data.service';
 import { AppRoutingModule } from './app-routing.module';
@@ -30,10 +31,11 @@ import { AppRoutingModule } from './app-routing.module';
     AppComponent,
     ChaptersComponent,
     PractiseComponent,
-    FlashCard
+    FlashCardFront,
+    FlashCardBack
   ],
   providers: [DataService],
   bootstrap: [AppComponent],
-  entryComponents: [FlashCard]//for dynamically creating components
+  entryComponents: [FlashCardFront,FlashCardBack]//for dynamically creating components
 })
 export class AppModule { }
