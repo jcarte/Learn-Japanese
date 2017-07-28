@@ -10,6 +10,8 @@ import { environment } from '../environments/environment';
 
 import { PractiseComponent } from './practise.component';
 import { ChaptersComponent } from './chapters.component';
+import { FlashCard } from './flash-card.component';
+
 import { DataService } from './data.service';
 import { AppRoutingModule } from './app-routing.module';
 
@@ -22,14 +24,16 @@ import { AppRoutingModule } from './app-routing.module';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
-    AppRoutingModule
+    AppRoutingModule,
   ],
   declarations: [
     AppComponent,
     ChaptersComponent,
-    PractiseComponent
+    PractiseComponent,
+    FlashCard
   ],
   providers: [DataService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [FlashCard]//for dynamically creating components
 })
 export class AppModule { }
