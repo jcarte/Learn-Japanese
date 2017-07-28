@@ -87,7 +87,23 @@ export const KEYWORDS: Keyword[] = [
     chapterId: 2,
     english: 'test 5',
     hiragana: 'おはようおはようおはよう',
-    romaji: 'testau 5',
+    romaji: '',
     kanji: ''
-}];
+},{
+    keywordId: 5,
+    chapterId: 2,
+    english: 'test 6',
+    hiragana: '',
+    romaji: '',
+    kanji: ''
+},{
+    keywordId: 6,
+    chapterId: 2,
+    english: '',
+    hiragana: '',
+    romaji: '',
+    kanji: ''
+}
+
+];
     
