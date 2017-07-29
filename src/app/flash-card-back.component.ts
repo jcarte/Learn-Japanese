@@ -10,19 +10,19 @@ import { Keyword } from './keyword';
             <div id="main" class="col-xs-12">
                 <div class="col-xs-6 text-center box" *ngIf="keyword.english !=''">
                     <h6>English</h6>
-                    <h1>{{keyword.english}}</h1>
+                    <h2>{{keyword.english}}</h2>
                 </div>    
                 <div class="col-xs-6 text-center box" *ngIf="keyword.hiragana !=''">
                     <h6>Hiragana</h6>
-                    <h1>{{keyword.hiragana}}</h1>
+                    <h2>{{keyword.hiragana}}</h2>
                 </div>    
                 <div class="col-xs-6 text-center box" *ngIf="keyword.romaji !=''">
                     <h6>Romaji</h6>
-                    <h1>{{keyword.romaji}}</h1>
+                    <h2>{{keyword.romaji}}</h2>
                 </div>    
                 <div class="col-xs-6 text-center box" *ngIf="keyword.kanji !=''">
                     <h6>Kanji</h6>
-                    <h1>{{keyword.kanji}}</h1>
+                    <h2>{{keyword.kanji}}</h2>
                 </div>    
             </div>
         </div>    

@@ -14,28 +14,33 @@ import 'rxjs/add/operator/switchMap';//??????
 @Component({
     selector: 'practise',
     template: ` 
-    <div>
-        <div class="col-xs-2 text-left" id="previous">
-            <i class="fa fa-chevron-left fa-3x" aria-hidden="true" (click)="previous()" ></i>
-        </div>
-        <div class="col-xs-8">
-            <div class="col-xs-12" #cardholder id="card"></div>
-        </div> 
-        <div class="col-xs-2 text-right" id="next">
-            <i class="fa fa-chevron-right fa-3x" aria-hidden="true" (click)="next()"></i>
-        </div>
-        <div #footer class="col-xs-offset-2 col-xs-8 text-left">
-            <div class="col-xs-4">
-                <a (click)="goBack()" class="btn btn-link">Menu</a> 
-            </div>
-            <div class="col-xs-4 text-center">
+    <div class="col-xs-12 col-sm-offset-2 col-sm-8">
+        <div class="col-xs-12 text-center" id="header">
+            <div class="text-left" id="menu-button">
+                <a (click)="goBack()" class="btn btn-link btn-xs">Menu</a> 
+            </div>    
+            <div class="text-center">
                 <a (click)="flipCard()" class="btn btn-info btn-xs">Turn Over</a> 
             </div>
-            <div class="col-xs-4 text-right">
+        
+        </div>
+
+        <div class="col-xs-12">
+            <div class="col-xs-12" #cardholder id="card"></div>
+        </div> 
+        
+        <div #footer class="col-xs-12 text-left">
+            <div class="col-xs-4 text-left" id="previous">
+                <i class="fa fa-chevron-left fa-2x" aria-hidden="true" (click)="previous()" [ngClass]="{ 'hidden-xs': !showPrevious || showingFront}"></i>
+            </div>
+            <div class="col-xs-4 text-center">
                 <div *ngIf="keywords">
                     {{cardIndex+1}} / {{keywords.length}}
                 </div>
             </div>
+            <div class="col-xs-4 text-right" id="next">
+                <i class="fa fa-chevron-right fa-2x" aria-hidden="true" (click)="next()" [ngClass]="{ 'hidden-xs': !showNext  || showingFront}"></i>
+            </div>    
         </div>
     </div>
 
@@ -50,6 +55,14 @@ import 'rxjs/add/operator/switchMap';//??????
     #next #previous{
         
     }
+
+    #menu-button{
+        position:absolute;
+    }
+
+    #header{
+        margin-bottom: 25px;
+    }
     `]
 })
 
@@ -63,7 +76,12 @@ export class PractiseComponent implements OnInit {
             this.dataService.getChapter(+params.get('chapterId'))).subscribe(chapter =>
                 this.dataService.getKeywords(chapter.chapterId).then(keywords => {
                     this.keywords = keywords;
-                    this.next();
+                    
+                    this.cardIndex = 0;
+                    this.loadFront();
+
+                    if(keywords.length > 1)
+                        this.showNext = true;
                 }));
 
 
@@ -79,6 +97,9 @@ export class PractiseComponent implements OnInit {
 
     showingFront: boolean;
 
+    showNext: boolean = false;
+    showPrevious: boolean = false;
+
     constructor(
         private dataService: DataService,
         private route: ActivatedRoute,
@@ -88,25 +109,29 @@ export class PractiseComponent implements OnInit {
     }
 
     next(): void {
-        if (this.cardIndex == this.keywords.length - 1)
+
+        if (this.cardIndex == this.keywords.length - 1) {//reached max
             return;
-        
-        if (this.cardIndex == null)
-            this.cardIndex = 0
-        else
-            this.cardIndex++;
+        }
+        this.cardIndex++;
+        if (this.cardIndex == this.keywords.length - 1) {//reached max
+            this.showNext = false;
+        }
+        this.showPrevious = true;
 
         this.loadFront();//want to load same again?
     }
 
     previous(): void {
-        if (this.cardIndex == 0)
+        if (this.cardIndex == 0) {//reached max
             return;
+        }
+        this.cardIndex--;
+        if (this.cardIndex == 0) {//reached max
+            this.showPrevious = false;
+        }
 
-        if (this.cardIndex == null)
-            this.cardIndex = 0
-        else
-            this.cardIndex--;
+        this.showNext = true;
 
         this.loadFront();//want to load same again?
     }
