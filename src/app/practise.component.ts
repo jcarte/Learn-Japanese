@@ -72,20 +72,21 @@ import 'rxjs/add/operator/switchMap';//??????
 
 export class PractiseComponent implements OnInit {
     ngOnInit(): void {
-        this.route.paramMap.switchMap((params: ParamMap) =>
-            this.dataService.getChapter(+params.get('chapterId'))).subscribe(chapter =>
-                this.dataService.getKeywords(chapter.chapterId).then(keywords => {
-                    this.keywords = keywords;
-                    
-                    this.cardIndex = 0;
-                    this.loadFront();
 
-                    if(keywords.length > 1)
-                        this.showNext = true;
-                }));
+        this.route.paramMap
+            .switchMap((params: ParamMap) => this.dataService.getKeywords(+params.get('chapterId')))
+            .subscribe(keys => {
+                this.keywords = keys;
 
+                this.cardIndex = 0;
+                this.loadFront();
 
+                if (keys.length > 1)
+                    this.showNext = true;
+            });
     }
+
+
 
     //https://blog.thecodecampus.de/angular-2-dynamically-render-components/
     @ViewChild('cardholder', { read: ViewContainerRef })
