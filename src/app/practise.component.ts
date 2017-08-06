@@ -31,7 +31,7 @@ import 'rxjs/add/operator/switchMap';//??????
         
         <div #footer class="col-xs-12 text-left">
             <div class="col-xs-4 text-left" id="previous">
-                <i class="fa fa-chevron-left fa-2x" aria-hidden="true" (click)="previous()" [ngClass]="{ 'hidden-xs': !showPrevious || showingFront}"></i>
+                <i class="fa fa-chevron-left fa-2x" aria-hidden="true" (click)="previous()" [ngClass]="{ 'hidden': !showPrevious || showingFront}"></i>
             </div>
             <div class="col-xs-4 text-center">
                 <div *ngIf="keywords">
@@ -39,7 +39,7 @@ import 'rxjs/add/operator/switchMap';//??????
                 </div>
             </div>
             <div class="col-xs-4 text-right" id="next">
-                <i class="fa fa-chevron-right fa-2x" aria-hidden="true" (click)="next()" [ngClass]="{ 'hidden-xs': !showNext  || showingFront}"></i>
+                <i class="fa fa-chevron-right fa-2x" aria-hidden="true" (click)="next()" [ngClass]="{ 'hidden': !showNext  || showingFront}"></i>
             </div>    
         </div>
     </div>
